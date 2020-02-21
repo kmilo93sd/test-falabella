@@ -16,7 +16,5 @@ export class SellProductService {
         'Product of id ' + productId + ' was not found.',
       );
     }
-
-
   }
 }

@@ -1,6 +1,13 @@
-import {Controller, Get, Param} from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Param,
+} from '@nestjs/common';
 import { ProductsRepository } from '../../repositories/products/ProductsRepository';
 import { MockProductsRepository } from '../../repositories/products/MockProductsRepository';
+import { EvaluateProductsService } from '../../services/evaluateProductsService';
 
 @Controller('products')
 export class ProductsController {
@@ -17,6 +24,21 @@ export class ProductsController {
 
   @Get('/evaluate/:days')
   evaluateProductsByDays(@Param() params) {
-    return { data: [] };
+    const days = params.days;
+
+    if (isNaN(days)) {
+      throw new HttpException(
+        'Invalid url param, valid number was expected as a param.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    const evaluateProductsService = new EvaluateProductsService(
+      this.productsRepository,
+    );
+
+    const evaluation = evaluateProductsService.execute(days);
+
+    return { data: evaluation };
   }
 }
