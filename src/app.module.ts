@@ -3,6 +3,7 @@ import * as redisStore from 'cache-manager-redis-store';
 import { SalesController } from './controllers/sales/sales.controller';
 import { ProductsController } from './controllers/products/products.controller';
 import { MockProductsRepository } from './repositories/products/MockProductsRepository';
+import { SellProductService } from './services/sellProductService';
 
 @Module({
   imports: [
@@ -13,6 +14,6 @@ import { MockProductsRepository } from './repositories/products/MockProductsRepo
     }),
   ],
   controllers: [ProductsController, SalesController],
-  providers: [MockProductsRepository],
+  providers: [SellProductService, MockProductsRepository],
 })
 export class AppModule {}
