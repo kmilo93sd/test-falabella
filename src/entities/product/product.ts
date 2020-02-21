@@ -1,15 +1,17 @@
+import { Price } from './price';
+
 export class Product {
   private id: string;
   private name: string;
   private sellIn: number;
-  private price: number;
+  private price: Price;
   private salesStartDate: string;
 
   constructor(
     id: string,
     name: string,
     sellIn: number,
-    price: number,
+    price: Price,
     salesStartDate: string,
   ) {
     this.id = id;
@@ -19,7 +21,5 @@ export class Product {
     this.salesStartDate = salesStartDate;
   }
 
-  getCurrentPrice() {
-
-  }
+  getCurrentPrice() {}
 }

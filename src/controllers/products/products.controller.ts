@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import {Controller, Get, Param} from '@nestjs/common';
 import { ProductsRepository } from '../../repositories/products/ProductsRepository';
 import { MockProductsRepository } from '../../repositories/products/MockProductsRepository';
 
@@ -13,5 +13,10 @@ export class ProductsController {
   @Get()
   getAvailableProducts() {
     return this.productsRepository.all();
+  }
+
+  @Get('/evaluate/:days')
+  evaluateProductsByDays(@Param() params) {
+    return { data: [] };
   }
 }
