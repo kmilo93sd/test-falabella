@@ -21,15 +21,15 @@ export class SalesController {
 
   @Post()
   sellProduct(@Req() request: Request) {
-    const { productId } = request.body;
+    const { productType } = request.body;
 
-    if (!productId) {
-      throw new BadRequestException("Missing parameter 'productId'.");
+    if (!productType) {
+      throw new BadRequestException("Missing parameter 'productType'.");
     }
 
     const sellProductService = new SellProductService(this.productsRepository);
 
-    const response = sellProductService.execute(productId);
+    const response = sellProductService.execute(productType);
 
     return { message: 'ok' };
   }

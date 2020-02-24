@@ -9,7 +9,7 @@ export class EvaluateProductsService {
 
   execute(days: number) {
     const products = this.productsRepository.all();
-
+    
     return products.map(product => {
       return product.evaluatePerDays(days);
     });

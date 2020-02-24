@@ -1,17 +1,22 @@
 import { Price } from './price';
 
-export class Product {
-  private id: string;
+export abstract class Product {
+  private type: string;
   private name: string;
   private sellIn: number;
   private price: Price;
 
-  constructor(id: string, name: string, sellIn: number, price: Price) {
-    this.id = id;
+  protected constructor(
+    type: string,
+    name: string,
+    sellIn: number,
+    price: Price,
+  ) {
+    this.type = type;
     this.name = name;
     this.sellIn = sellIn;
     this.price = price;
   }
 
-  evaluatePerDays(days: number) {}
+  abstract evaluatePerDays(days: number);
 }

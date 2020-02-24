@@ -11,7 +11,7 @@ import { EvaluateProductsService } from '../../services/evaluateProductsService'
 
 @Controller('products')
 export class ProductsController {
-  private productsRepository: ProductsRepository;
+  private readonly productsRepository: ProductsRepository;
 
   constructor(productsRepository: MockProductsRepository) {
     this.productsRepository = productsRepository;

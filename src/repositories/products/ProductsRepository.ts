@@ -1,4 +1,6 @@
+import { Product } from '../../entities/product/product';
+
 export interface ProductsRepository {
-  byId(productId: string);
-  all();
+  byType(productType: string): Product;
+  all(): Product[];
 }

@@ -8,12 +8,12 @@ export class SellProductService {
     this.productsRepository = productsRepository;
   }
 
-  execute(productId: string) {
-    const foundProduct = this.productsRepository.byId(productId);
+  execute(productType: string) {
+    const foundProduct = this.productsRepository.byType(productType);
 
     if (!foundProduct) {
       throw new NotFoundException(
-        'Product of id ' + productId + ' was not found.',
+        'Product of type ' + productType + ' was not found.',
       );
     }
   }

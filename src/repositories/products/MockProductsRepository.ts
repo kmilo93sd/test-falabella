@@ -1,38 +1,48 @@
+import { Product } from '../../entities/product/product';
 import { ProductsRepository } from './ProductsRepository';
+import { ProductFactory } from '../../entities/product/productFactory';
 
 export class MockProductsRepository implements ProductsRepository {
-  byId(productId: string) {
-    return products.find(product => product.id === productId);
+  private productFactory: ProductFactory;
+
+  constructor() {
+    this.productFactory = new ProductFactory();
   }
 
-  all() {
-    return products;
+  byType(productType: string): Product {
+    return this.productFactory.build(
+      products.find(product => product.type === productType),
+    );
+  }
+
+  all(): Product[] {
+    return products.map(product => this.productFactory.build(product));
   }
 }
 
 const products = [
   {
-    id: 'PR0001',
+    type: 'full_cobertura',
     name: 'Full cobertura',
     sellIn: 10,
-    price: 60000,
+    price: 20,
   },
   {
-    id: 'PR0002',
+    type: 'mega_cobertura',
     name: 'Mega cobertura',
-    sellIn: 30,
-    price: 50000,
+    sellIn: 10,
+    price: 180,
   },
   {
-    id: 'PR0003',
+    type: 'full_cobertura_super_duper',
     name: 'Full cobertura Super duper',
     sellIn: 25,
-    price: 80000,
+    price: 30,
   },
   {
-    id: 'PR0004',
+    type: 'super_avance',
     name: 'Super avance',
     sellIn: 15,
-    price: 40000,
+    price: 25,
   },
 ];
